@@ -183,7 +183,15 @@ def update_article_decision(pin, article_id, new_status, notes):
 def render_published_html(selected_track):
     articles = get_published_articles(selected_track)
     if not articles:
-        return "<p style='color:#64748b;padding:20px;text-align:center;'>Belum ada naskah yang diterbitkan pada kategori ini.</p>"
+        return """
+        <div style="background:#ffffff;border:1px dashed #cbd5e1;border-radius:10px;padding:40px 20px;text-align:center;margin-top:16px;">
+            <div style="font-size:2rem;margin-bottom:8px;">📭</div>
+            <h4 style="color:#0f172a;font-size:1.05rem;font-weight:700;margin:0 0 6px 0;">Belum Ada Artikel yang Diterbitkan</h4>
+            <p style="color:#64748b;font-size:0.88rem;margin:0 auto;max-width:550px;line-height:1.6;">
+                Jurnal J-DIGITEK saat ini sedang membuka penerimaan naskah (Call for Papers) untuk Edisi Perdana (Volume 1 Nomor 1, 2026). Naskah yang diajukan oleh mahasiswa/peneliti akan melalui proses peer-review oleh Dewan Redaksi sebelum resmi diterbitkan di sini.
+            </p>
+        </div>
+        """
     
     html = "<div style='display:flex;flex-direction:column;gap:20px;margin-top:15px;'>"
     for a in articles:
