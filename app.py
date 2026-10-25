@@ -411,6 +411,17 @@ button.primary:hover {
     margin-top: 30px;
     border-top: 4px solid #ffb23e;
 }
+
+/* Sembunyikan Footer Bawaan Gradio (Use via API, Built with Gradio, Settings) */
+footer, .gradio-container footer, div[data-testid="footer"], .svelte-10p0y76, .svelte-1ed2p3z {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
 """
 
 with gr.Blocks(title="J-DIGITEK: International Journal of Digital Innovation and Applied Engineering Technology", css=ojs_css) as app:
@@ -738,4 +749,4 @@ with gr.Blocks(title="J-DIGITEK: International Journal of Digital Innovation and
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 7860))
-    app.launch(server_name="0.0.0.0", server_port=port, share=False)
+    app.launch(server_name="0.0.0.0", server_port=port, share=False, show_api=False)
