@@ -424,7 +424,10 @@ footer, .gradio-container footer, div[data-testid="footer"], .svelte-10p0y76, .s
 }
 """
 
-with gr.Blocks(title="J-DIGITEK: International Journal of Digital Innovation and Applied Engineering Technology", css=ojs_css) as app:
+with gr.Blocks(title="J-DIGITEK: International Journal of Digital Innovation and Applied Engineering Technology") as app:
+    # Injeksi CSS OJS
+    gr.HTML(f"<style>{ojs_css}</style>")
+    
     # 1. TOP BAR OJS
     gr.HTML("""
     <div class="ojs-topbar">
@@ -749,4 +752,4 @@ with gr.Blocks(title="J-DIGITEK: International Journal of Digital Innovation and
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 7860))
-    app.launch(server_name="0.0.0.0", server_port=port, share=False, show_api=False)
+    app.launch(server_name="0.0.0.0", server_port=port, share=False, css=ojs_css)
