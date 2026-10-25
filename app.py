@@ -15,6 +15,17 @@ import ssl
 from datetime import datetime
 import gradio as gr
 
+try:
+    import spaces
+    has_spaces = True
+except Exception:
+    has_spaces = False
+
+def gpu_fn(fn):
+    if has_spaces:
+        return spaces.GPU(fn)
+    return fn
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
@@ -61,6 +72,7 @@ def get_published_articles(selected_track="Semua Track"):
     return res if res is not None else []
 
 
+@gpu_fn
 def submit_manuscript(title, authors, affiliation, email, track, abstract, keywords, file_obj):
     if not title or not authors or not abstract or not track:
         return "⚠️ Mohon lengkapi seluruh formulir bertanda wajib (Judul, Penulis, Track, dan Abstrak)."
